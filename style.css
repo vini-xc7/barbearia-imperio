@@ -1,0 +1,22 @@
+body {
+    background-color: #111;
+    color: white;
+    text-align: center;
+    font-family: Arial;
+}
+
+h1 {
+    color: gold;
+}
+
+a {
+    color: gold;
+    text-decoration: none;
+    margin: 10px;
+    font-size: 18px;
+}
+
+img {
+    border-radius: 10px;
+    margin-top: 20px;
+}
