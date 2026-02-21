@@ -1,34 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Barbearia Império</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Login - Sistema</title>
+<style>
+body{font-family:Arial;background:#111;color:white;display:flex;justify-content:center;align-items:center;height:100vh}
+.box{background:#222;padding:30px;border-radius:8px;width:300px}
+input,button{width:100%;padding:10px;margin:10px 0}
+button{background:#00c853;border:none;color:white;cursor:pointer}
+</style>
 </head>
-
 <body>
 
-    <h1>Barbearia Império</h1>
+<div class="box">
+<h2>Login Barbeiro</h2>
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="senha" placeholder="Senha">
+<button onclick="login()">Entrar</button>
+</div>
 
-    <p>Estilo, tradição e qualidade em cada corte.</p>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-    <a href="sobre.html">Sobre</a> |
-    <a href="contato.html">Contato</a>
+const firebaseConfig = {
+  apiKey: "AIzaSyATJ3395a1qbFwThnszljqiVtstKFGggBI",
+  authDomain: "barbearia-229f6.firebaseapp.com",
+  projectId: "barbearia-229f6",
+  storageBucket: "barbearia-229f6.firebasestorage.app",
+  messagingSenderId: "161670457315",
+  appId: "1:161670457315:web:4de0968caea1643e5c62d6"
+};
 
-    <br><br>
-    <a href="https://wa.me/5511999999999">Agendar pelo WhatsApp</a>
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-    <br><br>
+window.login = async function(){
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
 
-    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70" width="300">
-
-    <h2>Nossos Serviços</h2>
-
-    <p>Corte masculino</p>
-    <p>Barba</p>
-    <p>Acabamento</p>
+  try{
+    await signInWithEmailAndPassword(auth, email, senha);
+    window.location.href = "painel.html";
+  }catch(e){
+    alert("Erro no login");
+  }
+}
+</script>
 
 </body>
 </html>
